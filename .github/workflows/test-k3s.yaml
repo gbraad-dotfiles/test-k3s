@@ -73,11 +73,18 @@ jobs:
       run: |
         sleep 60
 
-    - name: Check fedora container
+    - name: Check fedora container running state
       uses: gbraad-actions/zsh-action@main
       with:
         run: |
           kubectl get pods
+
+    - name: Check fedora container systemnd
+      uses: gbraad-actions/zsh-action@main
+      with:
+        run: |
+          source ~/.dotfiles/source.sh
+          dev3s dotfedora exec systemctl status
 
     - name: Hang around
       if: failure()
